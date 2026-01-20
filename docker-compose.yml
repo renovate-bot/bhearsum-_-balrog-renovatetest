@@ -131,7 +131,7 @@ services:
 
 
   balrogui:
-    image: node:20
+    image: node:20@sha256:3680462e16df266d30b103a3e38e2bc315bf917d0ab873fbddbee437bf0bd2d0
     depends_on:
       balrogadmin:
         condition: service_healthy
@@ -204,7 +204,7 @@ services:
 
   # TODO: provide our own config so that we can guarantee the keyid
   autograph:
-    image: mozilla/autograph:latest
+    image: mozilla/autograph:latest@sha256:9281b7938189ee7a7ddc76a42b575b876da92e6d28600bf2eab878361b21bd71
     expose:
       - "8000"
     ports:
@@ -223,14 +223,14 @@ services:
   # visit http://localhost:8050 to view stats
   # see also: https://github.com/graphite-project/docker-graphite-statsd
   graphite:
-    image: graphiteapp/graphite-statsd:latest
+    image: graphiteapp/graphite-statsd:latest@sha256:2d61228771119ddaee2f62d65739d3b5e903de36666e899703e47be1def571fe
     expose:
       - "8125"
     ports:
       - "8050:80"
 
   redis:
-    image: redis:8-alpine
+    image: redis:8-alpine@sha256:6cbef353e480a8a6e7f10ec545f13d7d3fa85a212cdcc5ffaf5a1c818b9d3798
     command: redis-server --loglevel warning
     expose:
       - "6379"
