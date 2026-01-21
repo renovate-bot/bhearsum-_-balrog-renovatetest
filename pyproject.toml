@@ -12,7 +12,7 @@ dependencies = [
     "aiohttp",
     "arrow",
     "auth0-python>=4",
-    "connexion==2.14.2",
+    "connexion==3.3.0",
     "deepmerge",
     "ecdsa",
     "flask==2.2.3",
