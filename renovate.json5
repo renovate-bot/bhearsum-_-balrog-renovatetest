@@ -44,6 +44,8 @@
   // know how to parse out-of-box
   "customManagers": [
     // update .taskcluster.yml decision image pins
+    // a separate entry is needed to support `decision` and `run-task` tags without
+    // having renovate bump pins from one to the other.
     {
       // ideally this would use the jsonata `customType`, which would be more robust, but
       // it does not support updating digests
@@ -54,12 +56,21 @@
       "matchStrings": [
         // identify docker image definitions by looking for a line like:
         // image: mozillareleases/taskgraph:decision-v14.4.1@sha256:d5116d01d51856be2c143f260d0ba44f9b07576aa7104744bb94335534de2638
-        "image: (?<depName>\\S+):(?<currentValue>\\S+)@(?<currentDigest>\\S+)"
+        "image: (?<depName>\\S+):(?<currentValue>decision-\\S+)@(?<currentDigest>\\S+)"
       ],
       // overwrite the version parsing. necessary because of the `decision-v` prefix
       // we have on the image tags. without this, parsing fails and no updates will
       // be found
-      "versioningTemplate": "regex:^.*-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
-    }
+      "versioningTemplate": "regex:^decision-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+    },
+    {
+      "customType": "regex",
+      "datasourceTemplate": "docker",
+      "managerFilePatterns": [".taskcluster.yml"],
+      "matchStrings": [
+        "image: (?<depName>\\S+):(?<currentValue>run-task-\\S+)@(?<currentDigest>\\S+)"
+      ],
+      "versioningTemplate": "regex:^run-task-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+    },
   ]
 }
