@@ -15,7 +15,7 @@ dependencies = [
     "connexion==2.14.2",
     "deepmerge",
     "ecdsa",
-    "flask==2.2.3",
+    "flask==3.1.2",
     "flask_wtf",
     "gcloud-aio-storage",
     "google-api-core",
