@@ -59,7 +59,7 @@
       // overwrite the version parsing. necessary because of the `decision-v` prefix
       // we have on the image tags. without this, parsing fails and no updates will
       // be found
-      "versioningTemplate": "regex:^decision-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+      "versioningTemplate": "regex:^.*-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     }
   ]
 }
