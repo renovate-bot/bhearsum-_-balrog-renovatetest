@@ -46,7 +46,7 @@
         // jsonata query to extract docker image name, tag, and digest from a .taskcluster.yml
         // the query is located between the curly braces, and is a value such as:
         // mozillareleases/taskgraph:decision-v14.4.1@sha256:d5116d01d51856be2c143f260d0ba44f9b07576aa7104744bb94335534de2638
-        '**.payload.image.{"depName": $substringBefore(":"), "currentValue": $substringBefore($substringAfter(":"), "@"), "currentDigest": $substringAfter("sha256:")}'
+        '**.payload.image.{"depName": $substringBefore(":"), "currentValue": $substringBefore($substringAfter(":"), "@"), "currentDigest": $substringAfter("@")}'
       ]
     }
   ]
