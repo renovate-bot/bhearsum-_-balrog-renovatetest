@@ -11,8 +11,10 @@
   // this is the default, but let's be explicit about it
   "timezone": "UTC",
   // remove automatic grouping; this allows us to group, eg: all frontend dependencies together in
-  // one PR
+  // one PR (and more generally, be in control of how grouping happens)
   "ignorePresets": ["group:monorepos", "group:recommended"],
+  // packageRules is where we specify dependency updates for file and package types that
+  // are supported out-of-box
   "packageRules": [
     // group all non-major python dependencies together
     // major dependency bumps will bypass this, and each get their own PR
@@ -22,25 +24,30 @@
       "groupName": "python dependencies"
     },
     // group all JS dependencies together
-    // we may want to revisit at some point if major bumps become an issue
+    // we may want to revisit at some point if eg: we need to treat major bumps
+    // differently
     {
       "matchManagers": ["npm"],
       "groupName": "js dependencies"
     },
     // group all docker-related files together, as much as possible anyways
     // some Dockerfiles have an argument, eg: `PYTHON_VERSION` in their `FROM`
-    // statements, which must be handled separately
+    // statements, which will not be handled here. we could, theoretically,
+    // do this in a `customManager`, but in reality this is something we tend to
+    // want to do by hand
     {
       "matchManagers": ["dockerfile", "docker-compose"],
       "groupName": "docker dependencies"
     }
   ],
+  // customManagers is where we specify dependency updates for files that renovate doesn't
+  // know how to parse out-of-box
   "customManagers": [
-    // .taskcluster.yml decision image
-    // ideally this would use the jsonata `customType`, which would be more robust, but
-    // it does not support updating digests
-    // https://github.com/renovatebot/renovate/discussions/37921#discussioncomment-14355017
+    // update .taskcluster.yml decision image pins
     {
+      // ideally this would use the jsonata `customType`, which would be more robust, but
+      // it does not support updating digests
+      // https://github.com/renovatebot/renovate/discussions/37921#discussioncomment-14355017
       "customType": "regex",
       "datasourceTemplate": "docker",
       "managerFilePatterns": [".taskcluster.yml"],
