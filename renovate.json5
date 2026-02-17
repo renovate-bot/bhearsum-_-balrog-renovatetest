@@ -44,13 +44,6 @@
       "matchManagers": ["pep621"],
       "matchUpdateTypes": ["patch", "minor"],
       "matchJsonata": ["isBreaking != true"],
-      // Refresh lock files to update dependencies that aren't directly pinned in
-      // package.json / pyproject.toml.
-      "lockFileMaintenance": {
-        "enabled": true,
-        "branchTopic": "lock-file-maintenance-{{manager}}",
-        "commitMessageExtra": "({{manager}})"
-      },
       "groupName": "python dependencies"
     },
     // group all non-breaking JS dependencies together
@@ -58,13 +51,6 @@
       "matchManagers": ["npm"],
       "matchUpdateTypes": ["patch", "minor"],
       "matchJsonata": ["isBreaking != true"],
-      // Refresh lock files to update dependencies that aren't directly pinned in
-      // package.json / pyproject.toml.
-      "lockFileMaintenance": {
-        "enabled": true,
-        "branchTopic": "lock-file-maintenance-{{manager}}",
-        "commitMessageExtra": "({{manager}})"
-      },
       "groupName": "js dependencies"
     },
     // group all non-breaking docker-related files together, as much as possible anyways
@@ -92,6 +78,13 @@
       "schedule": ["* 0-3 1 * *"]
     },
   ],
+  // Refresh lock files to update dependencies that aren't directly pinned in
+  // package.json / pyproject.toml.
+  "lockFileMaintenance": {
+    "enabled": true,
+    "branchTopic": "lock-file-maintenance-{{manager}}",
+    "commitMessageExtra": "({{manager}})"
+  },
   // customManagers is where we specify dependency updates for files that renovate doesn't
   // know how to parse out-of-box
   "customManagers": [
