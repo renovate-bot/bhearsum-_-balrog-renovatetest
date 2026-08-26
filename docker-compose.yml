@@ -204,7 +204,7 @@ services:
 
   # TODO: provide our own config so that we can guarantee the keyid
   autograph:
-    image: mozilla/autograph:latest@sha256:9281b7938189ee7a7ddc76a42b575b876da92e6d28600bf2eab878361b21bd71
+    image: mozilla/autograph:latest@sha256:61bb205cec6da683cd7a3d16c00e466df39ff7a3d3e87920078dc2ddbe32a965
     expose:
       - "8000"
     ports:
