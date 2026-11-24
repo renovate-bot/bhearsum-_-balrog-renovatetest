@@ -230,7 +230,7 @@ services:
       - "8050:80"
 
   redis:
-    image: redis:8-alpine@sha256:6cbef353e480a8a6e7f10ec545f13d7d3fa85a212cdcc5ffaf5a1c818b9d3798
+    image: redis:8-alpine@sha256:5af80107c1eeecb484a2269b80a26d12bfa6521787da4663bd9f19f60a163483
     command: redis-server --loglevel warning
     expose:
       - "6379"
